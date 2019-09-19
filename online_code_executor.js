@@ -1,16 +1,16 @@
 const sync = require("child_process").spawn
 
 const languages = {
-    javascript: function(code) {
+    javascript: (code) => {
         return {
-            compiler: 'node',
-            parameters: ['-p', code]
+            start: 'node',
+            args: ['-p', code]
         }
     },
-    python3: function(code) {
+    python3: (code) => {
         return {
-            compiler: 'python3',
-            parameters: ['-c', code]
+            start: 'python3',
+            args: ['-c', code]
         }
     }
 }
@@ -20,12 +20,12 @@ function codeExecutor({
     code
 }) {
     if (!languages[language]) {
-        return false
+        return false;
     }
 
     const command_to_run = languages[language](code)
 
-    const run_command = sync(command_to_run.compiler, command_to_run.parameters, {
+    const run_command = sync(command_to_run.start, command_to_run.args, {
         encoding: 'utf-8'
     })
 
@@ -47,19 +47,8 @@ function codeExecutor({
     console.log(`child process exited with code ${finish_code}`);
     });
 
-    return true
+    return true;
     
 }
 
-// codeExecutor({language:"python3", 
-//     code:`
-// message = "Hello python"
-// print(message)
-//     `})
-
-//     codeExecutor({language:"javascript", 
-//     code:`
-//         const message = "Hello JS"
-//         console.log(message)
-//     `})
 module.exports = codeExecutor
