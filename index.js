@@ -1,23 +1,26 @@
-var express = require('express');
-var app = express();
-const codeExecutor = require("./online_code_executor");
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.get('/', function (req, res) {
-    const language = req.query.language;
-    const code = req.query.code;
-    console.log(`New request: 
-        Language = ${language}
-        Code: ${code}`);
+    res.sendFile(__dirname + '/index.html');
+});
 
-    codeExecutor({
-        language: language,
-        code: code
+io.on('connection', function(socket){
+    console.log('Client connection received');
+
+    socket.emit('sendToClient', {hello:'world'});
+
+    socket.on('receivedFromClient', function (data) {
+        console.log(data);
+    })
+
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
     });
-    res.send("Hello World!");
-
 });
 
 const port = 3000;
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-})
+http.listen(port, () => {
+    console.log(`HTTP server started on port ${port}`)
+});
