@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div contentEditable="true">
+        Este conteúdo pode ser editado.
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.emit("runCodeRequest", {
+            language: "javascript",
+            code: "var x = 1000000; var sum = 0; while(x){sum += x; x -= 1}; console.log(sum)"
+        })
+    </script>
+</body>
+
+</html>
