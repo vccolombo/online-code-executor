@@ -12,8 +12,10 @@ app.get('/', function (req, res) {
     codeExecutor({
         language: language,
         code: code
+    }, (result) => {
+        res.send(result);
     });
-    res.send("Hello World!");
+
 
 });
 
