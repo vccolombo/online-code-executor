@@ -8,16 +8,29 @@
     <button id="run-code-button" type="button">
         Run code
     </button>
+    <div>
+        Result:
+    </div>
+    <div id="code-result-div">
+
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
         var code_div = document.getElementById('code-div');
         var run_code_button = document.getElementById('run-code-button')
+        var code_result_div = document.getElementById('code-result-div')
+
         run_code_button.addEventListener('click', () => {
-            socket.emit("runCodeRequest", {
-                language: "javascript",
+            socket.emit('runCodeRequest', {
+                language: 'python3',
                 code: code_div.innerText
             })
+        })
+        
+        socket.on('result', (result) => {
+            console.log(result);
+            code_result_div.innerText = result;
         })
     </script>
 </body>

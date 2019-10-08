@@ -40,7 +40,7 @@ function codeExecutor({
         console.error(`stderr: ${data}`);
     });
 
-    run_command.on("exit", function (finish_code, signal) {
+    run_command.on('exit', function (finish_code, signal) {
         console.log(
             "child process exited with " + `code ${finish_code} and signal ${signal}`
         );

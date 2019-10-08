@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
             language: language,
             code: code
         }, (result) => {
-            socket.emit(result);
+            socket.emit('result', result);
         });
     });
 
