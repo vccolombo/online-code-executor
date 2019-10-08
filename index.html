@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
 
+<style>
+    [contenteditable] {
+        /* will match all elements with contenteditable attribute */
+        display: block;
+        font-family: monospace;
+        white-space: pre;
+        height: 300px;
+        overflow:auto
+    }
+</style>
+
 <body>
-    <div id="code-div" contentEditable="true">
-        Write your code here!
-    </div>
+    <div id="code-div" contenteditable>Write your code here!</div>
     <button id="run-code-button" type="button">
         Run code
     </button>
@@ -27,7 +36,7 @@
                 code: code_div.innerText
             })
         })
-        
+
         socket.on('result', (result) => {
             console.log(result);
             code_result_div.innerText = result;
