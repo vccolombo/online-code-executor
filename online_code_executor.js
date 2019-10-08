@@ -48,7 +48,7 @@ function codeExecutor({
 
     run_command.on('close', (finish_code) => {
         console.log(`child process exited with code ${finish_code}`);
-        return callback(result);
+        callback(result);
     });
 }
 
