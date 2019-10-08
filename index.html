@@ -6,14 +6,13 @@
         /* will match all elements with contenteditable attribute */
         display: block;
         font-family: monospace;
-        white-space: pre;
         height: 300px;
-        overflow:auto
+        overflow: auto
     }
 </style>
 
 <body>
-    <div id="code-div" contenteditable>Write your code here!</div>
+    <pre class="prettyprint lang-py" id="code-div" contenteditable></pre>
     <button id="run-code-button" type="button">
         Run code
     </button>
@@ -24,6 +23,7 @@
 
     </div>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script>
         var socket = io();
         var code_div = document.getElementById('code-div');
