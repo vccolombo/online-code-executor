@@ -34,10 +34,13 @@ function codeExecutor({
     run_command.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
         result += data.toString();
+        callback(result);
     });
 
     run_command.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
+        result += data.toString()
+        callback(result);
     });
 
     run_command.on('exit', function (finish_code, signal) {
@@ -48,7 +51,6 @@ function codeExecutor({
 
     run_command.on('close', (finish_code) => {
         console.log(`child process exited with code ${finish_code}`);
-        callback(result);
     });
 }
 
