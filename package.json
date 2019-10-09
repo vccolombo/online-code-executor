@@ -1,15 +1,22 @@
 {
   "name": "online-code-executor",
   "version": "1.0.0",
-  "description": "",
+  "description": "A NodeJS online code executor",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vccolombo/online-code-executor"
+  },
   "author": "Víctor Cora Colombo",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vccolombo/online-code-executor/issues"
+  },
+  "homepage": "https://github.com/vccolombo/online-code-executor",
   "devDependencies": {
     "nodemon": "^1.19.2"
   },
