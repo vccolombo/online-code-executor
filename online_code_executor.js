@@ -1,16 +1,26 @@
 const spawn = require("child_process").spawn
 
+const generateRandomId = () => {
+    const max = 1000000000;
+    const min = 0;
+    return Math.random() * (max - min) + min;
+}
+
 const languages = {
     javascript: (code) => {
+        const id = generateRandomId();
+        const docker_command = `run --rm --name ${id} node:latest node -p`.split(' ').concat(code);
         return {
-            start: 'node',
-            args: ['-p', code]
+            start: 'docker',
+            args: docker_command
         }
     },
     python3: (code) => {
+        const id = generateRandomId();
+        const docker_command = `run --rm --name ${id} python:3 python -c`.split(' ').concat(code);
         return {
-            start: 'python3',
-            args: ['-c', code]
+            start: 'docker',
+            args: docker_command
         }
     }
 }
@@ -41,6 +51,7 @@ function codeExecutor({
         console.error(`stderr: ${data}`);
         result += data.toString()
         callback(result);
+        kill(run_command.pid);
     });
 
     run_command.on('exit', function (finish_code, signal) {
