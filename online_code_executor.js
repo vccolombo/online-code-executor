@@ -51,7 +51,7 @@ function codeExecutor({
         console.error(`stderr: ${data}`);
         result += data.toString()
         callback(result);
-        kill(run_command.pid);
+        run_command.kill();
     });
 
     run_command.on('exit', function (finish_code, signal) {
