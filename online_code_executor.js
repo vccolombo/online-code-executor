@@ -33,7 +33,7 @@ function codeExecutor({
         return false;
     }
 
-    const command_to_run = languages[language](code)
+    const command_to_run = languages[language](code);
 
     var run_command = spawn(command_to_run.start, command_to_run.args, {
         encoding: 'utf-8'
@@ -49,14 +49,14 @@ function codeExecutor({
 
     run_command.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
-        result += data.toString()
+        result += data.toString();
         callback(result);
         run_command.kill();
     });
 
     run_command.on('exit', function (finish_code, signal) {
         console.log(
-            "child process exited with " + `code ${finish_code} and signal ${signal}`
+            `child process exited with code ${finish_code} and signal ${signal}`
         );
     });
 
