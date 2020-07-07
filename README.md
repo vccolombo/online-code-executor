@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> A NodeJS online code executor
+> A NodeJS application to write code in a web page and run it!
 
 ### 🏠 [Homepage](https://github.com/vccolombo/online-code-executor)
 
